@@ -1,8 +1,8 @@
+
 {
-  "name": "sppg-family-gathering-seat-picker",
-  "version": "1.0.0",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@netlify/blobs": "^8.2.0"
+    "@netlify/blobs": "^11.1.10"
   }
 }
