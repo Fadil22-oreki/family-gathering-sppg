@@ -1,26 +1,126 @@
+
 <!doctype html>
 <html lang="id">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pilih Kursi Bus — Family Gathering SPPG YAPENMARA PABUARAN</title>
+
 <style>
-:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#667085;--line:#e3e8ef;--green:#16864a;--greenbg:#dff5e8;--red:#c7cdd5;--blue:#2563eb}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
-main{max-width:760px;margin:0 auto;padding:22px 14px 40px}.hero{text-align:center;margin-bottom:18px}.hero h1{font-size:clamp(23px,5vw,32px);margin:0 0 8px}.hero p{margin:0;color:var(--muted)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 4px 18px #17203308}
-label{display:block;font-weight:650;margin-bottom:7px;font-size:14px}input,select{width:100%;padding:12px;border:1px solid #cfd6e0;border-radius:11px;font:inherit;background:white}
-.bus-top{border:1px solid var(--line);background:#f0f3f8;border-radius:14px;text-align:center;padding:12px;margin-bottom:15px;font-weight:700;font-size:13px}
-.legend{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin:14px 0}
-.key{display:flex;align-items:center;gap:6px}.swatch{width:14px;height:14px;border-radius:4px;border:1px solid #cbd2dc}.swatch.free{background:white}.swatch.mine{background:var(--green);border-color:var(--green)}.swatch.taken{background:var(--red)}
-.seats{display:grid;grid-template-columns:1fr 1fr 22px 1fr 1fr 1fr;gap:8px;max-width:430px;margin:0 auto}
-.seat{border:1px solid #cfd6e0;background:white;border-radius:9px;min-height:46px;font-weight:700;color:var(--ink);cursor:pointer;transition:.12s}
-.seat:hover:not(:disabled){border-color:var(--green);background:#f0fff5}.seat.selected{background:var(--green);border-color:var(--green);color:white}.seat.taken{background:var(--red);border-color:var(--red);color:#fff;cursor:not-allowed}
-.aisle{display:flex;align-items:center;justify-content:center;color:#a0a8b4;font-size:10px;writing-mode:vertical-rl;letter-spacing:2px}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}button{font:inherit;border:0;border-radius:11px;padding:12px 16px;font-weight:700;cursor:pointer}.primary{background:var(--green);color:white;flex:1}.secondary{background:#edf1f6;color:#344054}.danger{background:#fff0f0;color:#b42318}
-button:disabled{opacity:.45;cursor:not-allowed}.status{font-size:13px;color:var(--muted);margin-top:12px;min-height:20px}.selected-info{font-weight:700;margin:10px 0;color:var(--green)}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:12px}
-.admin{display:none}.admin.open{display:block}.foot{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
+:root{
+  --bg:#f5f7fb;
+  --card:#fff;
+  --ink:#172033;
+  --muted:#667085;
+  --line:#e3e8ef;
+  --green:#16864a;
+  --greenbg:#dff5e8;
+  --red:#c7cdd5;
+  --blue:#2563eb;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink);
+}
+main{max-width:760px;margin:0 auto;padding:22px 14px 40px}
+.hero{text-align:center;margin-bottom:18px}
+.hero h1{font-size:clamp(23px,5vw,32px);margin:0 0 8px}
+.hero p{margin:0;color:var(--muted)}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  margin:14px 0;
+  box-shadow:0 4px 18px #17203308;
+}
+label{display:block;font-weight:650;margin-bottom:7px;font-size:14px}
+input,select{
+  width:100%;
+  padding:12px;
+  border:1px solid #cfd6e0;
+  border-radius:11px;
+  font:inherit;
+  background:white;
+}
+.bus-top{
+  border:1px solid var(--line);
+  background:#f0f3f8;
+  border-radius:14px;
+  text-align:center;
+  padding:12px;
+  margin-bottom:15px;
+  font-weight:700;
+  font-size:13px;
+}
+.legend{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:wrap;
+  color:var(--muted);
+  font-size:12px;
+  margin:14px 0;
+}
+.key{display:flex;align-items:center;gap:6px}
+.swatch{width:14px;height:14px;border-radius:4px;border:1px solid #cbd2dc}
+.swatch.free{background:white}
+.swatch.mine{background:var(--green);border-color:var(--green)}
+.swatch.taken{background:var(--red)}
+.seats{
+  display:grid;
+  grid-template-columns:1fr 1fr 22px 1fr 1fr 1fr;
+  gap:8px;
+  max-width:430px;
+  margin:0 auto;
+}
+.seat{
+  border:1px solid #cfd6e0;
+  background:white;
+  border-radius:9px;
+  min-height:46px;
+  font-weight:700;
+  color:var(--ink);
+  cursor:pointer;
+  transition:.12s;
+}
+.seat:hover:not(:disabled){border-color:var(--green);background:#f0fff5}
+.seat.selected{background:var(--green);border-color:var(--green);color:white}
+.seat.taken{background:var(--red);border-color:var(--red);color:#fff;cursor:not-allowed}
+.aisle{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#a0a8b4;
+  font-size:10px;
+  writing-mode:vertical-rl;
+  letter-spacing:2px;
+}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+button{
+  font:inherit;
+  border:0;
+  border-radius:11px;
+  padding:12px 16px;
+  font-weight:700;
+  cursor:pointer;
+}
+.primary{background:var(--green);color:white;flex:1}
+.secondary{background:#edf1f6;color:#344054}
+.danger{background:#fff0f0;color:#b42318}
+button:disabled{opacity:.45;cursor:not-allowed}
+.status{font-size:13px;color:var(--muted);margin-top:12px;min-height:20px}
+.selected-info{font-weight:700;margin:10px 0;color:var(--green)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-size:12px}
+.admin{display:none}
+.admin.open{display:block}
+.foot{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
+.delete-one{padding:7px 10px;font-size:12px}
 @media(max-width:420px){
   main{padding:16px 10px}
   .card{padding:14px}
@@ -29,127 +129,459 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;p
     grid-template-columns:1fr 1fr 16px 1fr 1fr 1fr;
   }
   .seat{min-height:42px;font-size:13px}
+  th,td{padding:7px 5px;font-size:12px}
 }
 </style>
 </head>
+
 <body>
 <main>
-  <header class="hero">
-    <h1>Family Gathering SPPG YAPENMARA PABUARAN</h1>
-    <p>Pilih tempat duduk bus kamu</p>
-  </header>
-  <section class="card">
-    <label for="name">Nama relawan</label>
-    <input id="name" placeholder="Tulis nama lengkap" autocomplete="name" maxlength="80">
-    <div class="selected-info" id="selectedInfo">Kursi dipilih: belum ada</div>
-    <div class="bus-top">DENAH BUS · 60 SEAT (2-3)</div>
-    <div class="legend">
-      <span class="key"><i class="swatch free"></i> Kosong</span>
-      <span class="key"><i class="swatch mine"></i> Pilihan kamu</span>
-      <span class="key"><i class="swatch taken"></i> Sudah terisi</span>
-    </div>
-    <div id="seatMap" class="seats" aria-label="Denah kursi bus"></div>
-    <div class="actions">
-      <button id="save" class="primary" disabled>Simpan pilihan kursi</button>
-      <button id="refresh" class="secondary">Perbarui</button>
-    </div>
-    <div id="status" class="status">Memuat kursi...</div>
-  </section>
-  <section class="card">
-    <h3 style="margin:0 0 8px">Sudah memilih kursi?</h3>
-    <p style="margin:0;color:var(--muted);font-size:14px">Pastikan nama dan nomor kursi sudah benar sebelum disimpan. Kursi yang sudah terisi tidak bisa dipilih oleh relawan lain.</p>
-  </section>
-  <section class="card">
-    <button id="adminToggle" class="secondary" style="width:100%">Admin / Lihat daftar kursi</button>
-    <div id="admin" class="admin">
-      <div style="margin-top:16px">
-        <label for="pin">PIN admin</label>
-        <input id="pin" type="password" placeholder="Masukkan PIN admin">
-        <div class="actions">
-          <button id="adminLogin" class="primary">Buka daftar</button>
-          <button id="export" class="secondary" disabled>Unduh CSV</button>
-        </div>
-        <div id="adminStatus" class="status"></div>
-        <div id="listWrap"></div>
-        <div class="actions">
-          <button id="reset" class="danger" disabled>Kosongkan semua kursi</button>
-        </div>
+
+<header class="hero">
+  <h1>Family Gathering SPPG YAPENMARA PABUARAN</h1>
+  <p>Pilih tempat duduk bus kamu</p>
+</header>
+
+<section class="card">
+  <label for="name">Nama relawan</label>
+  <input id="name" placeholder="Tulis nama lengkap" autocomplete="name" maxlength="80">
+
+  <div class="selected-info" id="selectedInfo">Kursi dipilih: belum ada</div>
+
+  <div class="bus-top">DENAH BUS · 60 SEAT (2-3)</div>
+
+  <div class="legend">
+    <span class="key"><i class="swatch free"></i> Kosong</span>
+    <span class="key"><i class="swatch mine"></i> Pilihan kamu</span>
+    <span class="key"><i class="swatch taken"></i> Sudah terisi</span>
+  </div>
+
+  <div id="seatMap" class="seats" aria-label="Denah kursi bus"></div>
+
+  <div class="actions">
+    <button id="save" class="primary" disabled>Simpan pilihan kursi</button>
+    <button id="refresh" class="secondary">Perbarui</button>
+  </div>
+
+  <div id="status" class="status">Memuat kursi...</div>
+</section>
+
+<section class="card">
+  <h3 style="margin:0 0 8px">Sudah memilih kursi?</h3>
+  <p style="margin:0;color:var(--muted);font-size:14px">
+    Pastikan nama dan nomor kursi sudah benar sebelum disimpan.
+    Kursi yang sudah terisi tidak bisa dipilih oleh relawan lain.
+  </p>
+</section>
+
+<section class="card">
+  <button id="adminToggle" class="secondary" style="width:100%">
+    Admin / Lihat daftar kursi
+  </button>
+
+  <div id="admin" class="admin">
+    <div style="margin-top:16px">
+      <label for="pin">PIN admin</label>
+      <input id="pin" type="password" placeholder="Masukkan PIN admin">
+
+      <div class="actions">
+        <button id="adminLogin" class="primary">Buka daftar</button>
+        <button id="export" class="secondary" disabled>Unduh CSV</button>
+      </div>
+
+      <div id="adminStatus" class="status"></div>
+      <div id="listWrap"></div>
+
+      <div class="actions">
+        <button id="reset" class="danger" disabled>Kosongkan semua kursi</button>
       </div>
     </div>
-  </section>
-  <div class="foot">Aplikasi pemilihan kursi Family Gathering · SPPG YAPENMARA PABUARAN</div>
+  </div>
+</section>
+
+<div class="foot">
+  Aplikasi pemilihan kursi Family Gathering · SPPG YAPENMARA PABUARAN
+</div>
+
 </main>
+
 <script>
-const TOTAL_SEATS=60; // Sesuai denah bus: 60 seat, konfigurasi 2-3.
-const API="/.netlify/functions/seats";
-let chosen=null, reservations=[], adminOpen=false;
-const $=id=>document.getElementById(id);
-function status(msg){$("status").textContent=msg}
-function adminStatus(msg){$("adminStatus").textContent=msg}
-function getMine(){const n=$("name").value.trim().toLowerCase();return reservations.find(r=>r.name.toLowerCase()===n)}
+const TOTAL_SEATS = 60;
+const API = "/.netlify/functions/seats";
+
+let chosen = null;
+let reservations = [];
+
+const $ = id => document.getElementById(id);
+
+function status(msg){
+  $("status").textContent = msg;
+}
+
+function adminStatus(msg){
+  $("adminStatus").textContent = msg;
+}
+
+function getMine(){
+  const n = $("name").value.trim().toLowerCase();
+  return reservations.find(r => r.name.toLowerCase() === n);
+}
+
 function makeSeat(n){
- const btn=document.createElement("button");btn.className="seat";btn.textContent=String(n).padStart(2,"0");
- const taken=reservations.some(r=>r.seat===n);
- if(taken){btn.classList.add("taken");btn.disabled=true;btn.title="Sudah terisi"}
- if(chosen===n&&!taken){btn.classList.add("selected")}
- btn.addEventListener("click",()=>{chosen=n;render();updateSave()});
- return btn;
+  const btn = document.createElement("button");
+  btn.className = "seat";
+  btn.textContent = String(n).padStart(2,"0");
+
+  const taken = reservations.some(r => r.seat === n);
+
+  if(taken){
+    btn.classList.add("taken");
+    btn.disabled = true;
+    btn.title = "Sudah terisi";
+  }
+
+  if(chosen === n && !taken){
+    btn.classList.add("selected");
+  }
+
+  btn.addEventListener("click",()=>{
+    chosen = n;
+    render();
+    updateSave();
+  });
+
+  return btn;
 }
+
 function render(){
- const map=$("seatMap");map.innerHTML="";
- // Kursi 60 berada di bagian depan, sesuai denah.
- const front=document.createElement("div");front.style.gridColumn="1 / -1";front.style.display="flex";front.style.justifyContent="center";front.style.alignItems="center";front.style.gap="12px";front.style.marginBottom="4px";
- const frontLabel=document.createElement("span");frontLabel.textContent="Depan / Driver";frontLabel.style.fontSize="11px";frontLabel.style.color="#667085";
- const frontSeat=makeSeat(60);frontSeat.style.minWidth="60px";
- front.append(frontLabel,frontSeat);map.appendChild(front);
- // Sepuluh baris penumpang: 2 kursi kiri + lorong + 3 kursi kanan (1-50).
- for(let row=0;row<10;row++){
-   const nums=[row*5+1,row*5+2,null,row*5+3,row*5+4,row*5+5];
-   nums.forEach((n,i)=>{
-     if(n===null){const aisle=document.createElement("div");aisle.className="aisle";aisle.textContent="";map.appendChild(aisle)}
-     else map.appendChild(makeSeat(n));
-   });
- }
- // Baris belakang tambahan: kursi 51-53 di sisi kanan.
- [null,null,null,51,52,53].forEach(n=>{
-   if(n===null)map.appendChild(document.createElement("div"));else map.appendChild(makeSeat(n));
- });
- // Bangku paling belakang: 54-59.
- const rear=document.createElement("div");rear.style.gridColumn="1 / -1";rear.style.display="grid";rear.style.gridTemplateColumns="repeat(6,minmax(0,1fr))";rear.style.gap="6px";rear.style.marginTop="5px";
- for(let n=54;n<=59;n++)rear.appendChild(makeSeat(n));
- map.appendChild(rear);
- $("selectedInfo").textContent="Kursi dipilih: "+(chosen?String(chosen).padStart(2,"0"):"belum ada");
+  const map = $("seatMap");
+  map.innerHTML = "";
+
+  // Kursi depan nomor 60
+  const front = document.createElement("div");
+  front.style.gridColumn = "1 / -1";
+  front.style.display = "flex";
+  front.style.justifyContent = "center";
+  front.style.alignItems = "center";
+  front.style.gap = "12px";
+  front.style.marginBottom = "4px";
+
+  const frontLabel = document.createElement("span");
+  frontLabel.textContent = "Depan / Driver";
+  frontLabel.style.fontSize = "11px";
+  frontLabel.style.color = "#667085";
+
+  const frontSeat = makeSeat(60);
+  frontSeat.style.minWidth = "60px";
+
+  front.append(frontLabel,frontSeat);
+  map.appendChild(front);
+
+  // Sepuluh baris utama: 2 kiri + lorong + 3 kanan
+  for(let row = 0; row < 10; row++){
+    const nums = [
+      row*5+1,
+      row*5+2,
+      null,
+      row*5+3,
+      row*5+4,
+      row*5+5
+    ];
+
+    nums.forEach(n=>{
+      if(n === null){
+        const aisle = document.createElement("div");
+        aisle.className = "aisle";
+        map.appendChild(aisle);
+      }else{
+        map.appendChild(makeSeat(n));
+      }
+    });
+  }
+
+  // Baris tambahan 51-53
+  [null,null,null,51,52,53].forEach(n=>{
+    if(n === null){
+      map.appendChild(document.createElement("div"));
+    }else{
+      map.appendChild(makeSeat(n));
+    }
+  });
+
+  // Bangku belakang 54-59
+  const rear = document.createElement("div");
+  rear.style.gridColumn = "1 / -1";
+  rear.style.display = "grid";
+  rear.style.gridTemplateColumns = "repeat(6,minmax(0,1fr))";
+  rear.style.gap = "6px";
+  rear.style.marginTop = "5px";
+
+  for(let n = 54; n <= 59; n++){
+    rear.appendChild(makeSeat(n));
+  }
+
+  map.appendChild(rear);
+
+  $("selectedInfo").textContent =
+    "Kursi dipilih: " +
+    (chosen ? String(chosen).padStart(2,"0") : "belum ada");
 }
-function updateSave(){$("save").disabled=!(chosen&&$("name").value.trim());}
+
+function updateSave(){
+  $("save").disabled = !(chosen && $("name").value.trim());
+}
+
 async function load(){
- status("Memuat data kursi...");
- try{const res=await fetch(API);if(!res.ok)throw new Error("API belum tersedia");const data=await res.json();reservations=data.reservations||[];if(chosen&&reservations.some(r=>r.seat===chosen))chosen=null;render();updateSave();status("Kursi diperbarui. Silakan pilih yang masih kosong.");}
- catch(e){status("Aplikasi belum terhubung ke server. Deploy project ke Netlify untuk mulai digunakan.")}
+  status("Memuat data kursi...");
+
+  try{
+    const res = await fetch(API);
+    if(!res.ok) throw new Error("API belum tersedia");
+
+    const data = await res.json();
+    reservations = data.reservations || [];
+
+    if(chosen && reservations.some(r => r.seat === chosen)){
+      chosen = null;
+    }
+
+    render();
+    updateSave();
+    status("Kursi diperbarui. Silakan pilih yang masih kosong.");
+
+  }catch(e){
+    render();
+    updateSave();
+    status("Server belum terhubung. Denah tetap tersedia, tetapi penyimpanan belum bisa digunakan.");
+  }
 }
+
+// Simpan pilihan kursi
 $("name").addEventListener("input",updateSave);
+
 $("save").addEventListener("click",async()=>{
- const name=$("name").value.trim();if(!name||!chosen)return;
- $("save").disabled=true;status("Menyimpan pilihan...");
- try{
-  const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name,seat:chosen})});
-  const data=await res.json();if(!res.ok)throw new Error(data.error||"Gagal menyimpan");
-  chosen=null;await load();status("Berhasil! Kursi "+data.seat+" sudah tercatat atas nama "+name+".");
- }catch(e){status(e.message);updateSave()}
+  const name = $("name").value.trim();
+
+  if(!name || !chosen) return;
+
+  $("save").disabled = true;
+  status("Menyimpan pilihan...");
+
+  try{
+    const res = await fetch(API,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name,seat:chosen})
+    });
+
+    const data = await res.json();
+
+    if(!res.ok) throw new Error(data.error || "Gagal menyimpan");
+
+    const seat = data.seat;
+    chosen = null;
+
+    await load();
+
+    status("Berhasil! Kursi " +
+      String(seat).padStart(2,"0") +
+      " sudah tercatat atas nama " + name + ".");
+
+  }catch(e){
+    status(e.message);
+    updateSave();
+  }
 });
+
 $("refresh").addEventListener("click",load);
-$("adminToggle").addEventListener("click",()=>{$("admin").classList.toggle("open")});
-$("adminLogin").addEventListener("click",async()=>{
- try{const res=await fetch(API+"?admin=1",{headers:{"x-admin-pin":$("pin").value}});const data=await res.json();if(!res.ok)throw new Error(data.error||"PIN salah");reservations=data.reservations||[];render();$("export").disabled=false;$("reset").disabled=false;adminStatus("Daftar kursi");const rows=reservations.slice().sort((a,b)=>a.seat-b.seat).map(r=>`<tr><td>${String(r.seat).padStart(2,"0")}</td><td>${escapeHtml(r.name)}</td></tr>`).join("");$("listWrap").innerHTML=`<table><thead><tr><th>Kursi</th><th>Nama relawan</th></tr></thead><tbody>${rows||"<tr><td colspan='2'>Belum ada yang memilih.</td></tr>"}</tbody></table>`;
- }catch(e){adminStatus(e.message)}
+
+// Admin
+$("adminToggle").addEventListener("click",()=>{
+  $("admin").classList.toggle("open");
 });
-function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-$("export").addEventListener("click",()=>{const csv="Kursi,Nama Relawan\\n"+reservations.slice().sort((a,b)=>a.seat-b.seat).map(r=>`${r.seat},"${r.name.replace(/"/g,'""')}"`).join("\\n");const blob=new Blob(["\\ufeff"+csv],{type:"text/csv;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="daftar-kursi-family-gathering.csv";a.click();URL.revokeObjectURL(a.href)});
-$("reset").addEventListener("click",async()=>{if(!confirm("Yakin ingin mengosongkan semua pilihan kursi?"))return;try{const res=await fetch(API,{method:"DELETE",headers:{"x-admin-pin":$("pin").value}});const data=await res.json();if(!res.ok)throw new Error(data.error||"Gagal");chosen=null;await load();adminStatus("Semua kursi sudah dikosongkan.");$("listWrap").innerHTML="";$("export").disabled=true;$("reset").disabled=true;}catch(e){adminStatus(e.message)}});
-// Tampilkan denah terlebih dahulu tanpa menunggu server.
+
+$("adminLogin").addEventListener("click",async()=>{
+  try{
+    const res = await fetch(API+"?admin=1",{
+      headers:{"x-admin-pin":$("pin").value}
+    });
+
+    const data = await res.json();
+
+    if(!res.ok) throw new Error(data.error || "PIN salah");
+
+    reservations = data.reservations || [];
+
+    render();
+    updateSave();
+    renderAdminList();
+
+    $("export").disabled = false;
+    $("reset").disabled = false;
+
+    adminStatus("Daftar kursi berhasil dimuat.");
+
+  }catch(e){
+    adminStatus(e.message);
+  }
+});
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g,c=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c]));
+}
+
+// Menampilkan daftar peserta dan tombol hapus
+function renderAdminList(){
+  const rows = reservations
+    .slice()
+    .sort((a,b)=>a.seat-b.seat)
+    .map(r=>`
+      <tr>
+        <td>${String(r.seat).padStart(2,"0")}</td>
+        <td>${escapeHtml(r.name)}</td>
+        <td>
+          <button
+            class="danger delete-one"
+            data-seat="${r.seat}"
+            style="padding:7px 10px;font-size:12px"
+          >Hapus</button>
+        </td>
+      </tr>
+    `).join("");
+
+  $("listWrap").innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Kursi</th>
+          <th>Nama relawan</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows || '<tr><td colspan="3">Belum ada yang memilih.</td></tr>'}
+      </tbody>
+    </table>
+  `;
+}
+
+// Hapus satu peserta
+$("listWrap").addEventListener("click",async(event)=>{
+  const button = event.target.closest(".delete-one");
+  if(!button) return;
+
+  const seat = Number(button.dataset.seat);
+  const participant = reservations.find(r=>r.seat===seat);
+
+  if(!participant) return;
+
+  const confirmed = confirm(
+    "Yakin ingin menghapus " + participant.name +
+    " dari kursi " + String(seat).padStart(2,"0") + "?"
+  );
+
+  if(!confirmed) return;
+
+  button.disabled = true;
+  adminStatus("Menghapus pilihan kursi...");
+
+  try{
+    const res = await fetch(API,{
+      method:"DELETE",
+      headers:{
+        "Content-Type":"application/json",
+        "x-admin-pin":$("pin").value
+      },
+      body:JSON.stringify({seat})
+    });
+
+    const data = await res.json();
+
+    if(!res.ok) throw new Error(data.error || "Gagal menghapus peserta.");
+
+    reservations = data.reservations || [];
+
+    if(chosen === seat) chosen = null;
+
+    render();
+    updateSave();
+    renderAdminList();
+
+    adminStatus(
+      "Pilihan " + participant.name +
+      " berhasil dihapus. Kursi " +
+      String(seat).padStart(2,"0") +
+      " sekarang tersedia kembali."
+    );
+
+  }catch(e){
+    adminStatus(e.message);
+    button.disabled = false;
+  }
+});
+
+// Export CSV
+$("export").addEventListener("click",()=>{
+  const csv = "Kursi,Nama Relawan\n" +
+    reservations
+      .slice()
+      .sort((a,b)=>a.seat-b.seat)
+      .map(r=>`${r.seat},"${r.name.replace(/"/g,'""')}"`)
+      .join("\n");
+
+  const blob = new Blob(["\ufeff"+csv],{
+    type:"text/csv;charset=utf-8"
+  });
+
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "daftar-kursi-family-gathering.csv";
+  a.click();
+
+  URL.revokeObjectURL(a.href);
+});
+
+// Hapus semua kursi
+$("reset").addEventListener("click",async()=>{
+  if(!confirm("Yakin ingin mengosongkan semua pilihan kursi?")){
+    return;
+  }
+
+  try{
+    const res = await fetch(API,{
+      method:"DELETE",
+      headers:{"x-admin-pin":$("pin").value}
+    });
+
+    const data = await res.json();
+
+    if(!res.ok) throw new Error(data.error || "Gagal menghapus semua kursi.");
+
+    chosen = null;
+    reservations = [];
+
+    render();
+    updateSave();
+    renderAdminList();
+
+    adminStatus("Semua kursi berhasil dikosongkan.");
+    $("export").disabled = true;
+    $("reset").disabled = true;
+
+  }catch(e){
+    adminStatus(e.message);
+  }
+});
+
+// Tampilkan denah lebih dahulu, lalu ambil data server.
 render();
 updateSave();
-
-// Setelah denah tampil, ambil data kursi dari server.
 load();
 </script>
 </body>
