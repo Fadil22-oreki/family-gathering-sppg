@@ -21,7 +21,15 @@ label{display:block;font-weight:650;margin-bottom:7px;font-size:14px}input,selec
 button:disabled{opacity:.45;cursor:not-allowed}.status{font-size:13px;color:var(--muted);margin-top:12px;min-height:20px}.selected-info{font-weight:700;margin:10px 0;color:var(--green)}
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:12px}
 .admin{display:none}.admin.open{display:block}.foot{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
-@media(max-width:420px){main{padding:16px 10px}.card{padding:14px}.seats{gap:6px;grid-template-columns:1fr 1fr 16px 1fr 1fr}.seat{min-height:42px;font-size:13px}}
+@media(max-width:420px){
+  main{padding:16px 10px}
+  .card{padding:14px}
+  .seats{
+    gap:6px;
+    grid-template-columns:1fr 1fr 16px 1fr 1fr 1fr;
+  }
+  .seat{min-height:42px;font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -137,6 +145,11 @@ $("adminLogin").addEventListener("click",async()=>{
 function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 $("export").addEventListener("click",()=>{const csv="Kursi,Nama Relawan\\n"+reservations.slice().sort((a,b)=>a.seat-b.seat).map(r=>`${r.seat},"${r.name.replace(/"/g,'""')}"`).join("\\n");const blob=new Blob(["\\ufeff"+csv],{type:"text/csv;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="daftar-kursi-family-gathering.csv";a.click();URL.revokeObjectURL(a.href)});
 $("reset").addEventListener("click",async()=>{if(!confirm("Yakin ingin mengosongkan semua pilihan kursi?"))return;try{const res=await fetch(API,{method:"DELETE",headers:{"x-admin-pin":$("pin").value}});const data=await res.json();if(!res.ok)throw new Error(data.error||"Gagal");chosen=null;await load();adminStatus("Semua kursi sudah dikosongkan.");$("listWrap").innerHTML="";$("export").disabled=true;$("reset").disabled=true;}catch(e){adminStatus(e.message)}});
+// Tampilkan denah terlebih dahulu tanpa menunggu server.
+render();
+updateSave();
+
+// Setelah denah tampil, ambil data kursi dari server.
 load();
 </script>
 </body>
